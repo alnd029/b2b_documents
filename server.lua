@@ -1,6 +1,21 @@
 local ox_inventory = exports.ox_inventory
 local ESX, QBCore, Qbox = nil, nil, nil
 
+MySQL.ready(function()
+    local sqlQuery = [[
+        CREATE TABLE IF NOT EXISTS `b2b_documents` (
+            `id` varchar(50) NOT NULL,
+            `content` longtext DEFAULT NULL,
+            `title` varchar(100) DEFAULT 'Document',
+            `locked` tinyint(1) DEFAULT 0,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    ]]
+    
+    MySQL.query(sqlQuery, {}, function(success)
+    end)
+end)
+
 CreateThread(function()
     if Config.Framework == "auto" then
         if GetResourceState('es_extended') == 'started' then
