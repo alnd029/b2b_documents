@@ -1,11 +1,11 @@
 # b2b_documents (ESX, QbCore, Qbox)
-A modern document editor for FiveM (Qbox/ESX/QB) that will take your roleplay server to a next level.
+A modern document / note editor for FiveM (Qbox/ESX/QB) that will take your roleplay server to a next level.
 
 📄 b2b_documents
-Le système de documents ultime pour FiveM Un éditeur de texte riche, moderne et performant.
+Le système de documents et de bloc notes ultime pour FiveM Un éditeur de texte riche, moderne et performant. 
 
 🌟 Description
-b2b_documents redefines how players interact with in-game paperwork. Whether it's a police report, a legal contract, or a simple letter, our Quill-based editor provides a smooth and professional experience. No more clunky, outdated interfaces: embrace the modern era of roleplay.
+b2b_documents redefines how players interact with in-game paperwork. Whether it's a police report, a legal contract, a note, or a simple letter, our Quill-based editor provides a smooth and professional experience. No more clunky, outdated interfaces: embrace the modern era of roleplay.
 
 ✨ Features
 🎨 Ultra-Modern UI : Clean design, rounded corners, and smooth "Pop-in" animations.
@@ -28,7 +28,7 @@ Please read the INSTALLATION.txt file included in the folder carefully before at
 
 Français
 🌟 Description
-b2b_documents redéfinit la manière dont les joueurs interagissent avec les écrits en jeu. Que ce soit pour un rapport de police, un contrat d'avocat ou une simple lettre d'amour, notre éditeur basé sur Quill offre une expérience fluide et professionnelle. Fini les interfaces rigides et vieillissantes : place à la modernité.
+b2b_documents redéfinit la manière dont les joueurs interagissent avec les écrits en jeu. Que ce soit pour un rapport de police, un contrat d'avocat, une note ou une simple lettre d'amour, notre éditeur basé sur Quill offre une expérience fluide et professionnelle. Fini les interfaces rigides et vieillissantes : place à la modernité.
 
 ✨ Caractéristiques
 🎨 Interface Ultra-Moderne : Design épuré, coins arrondis et animations de type "Pop-in".
