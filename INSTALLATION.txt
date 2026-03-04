@@ -1,4 +1,4 @@
-DÉPENDANCES:
+Dependencies:
 
 - ox_lib
 - ox_inventory
@@ -9,18 +9,18 @@ DÉPENDANCES:
 
 INSTALLATION: 
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ÉTAPE 1
+STEP 1
 
-Mettre le dossier "b2b_documents" dans le dossier ressources.
-Ne pas oublier de "ensure" la ressource dans votre server.cfg
+Place the folder "b2b_documents" in your ressources folder.
+Ensure it in your server.cfg
 --
-ÉTAPE 2
+STEP 2
 
-Aller à "ox_inventory/data/items.lua"
-Se rendre à la fin du fichier et coller ceci en respectant la synthaxe puis enregistrer: 
+Go to "ox_inventory/data/items.lua"
+Go to the end of the file and add this: 
 
     ['paper_blank'] = {
-        label = 'Papier Vierge',
+        label = 'Blank Paper',
         weight = 10,
         stack = false,
         close = true,
@@ -42,12 +42,8 @@ Se rendre à la fin du fichier et coller ceci en respectant la synthaxe puis enr
     }
 
 --
-ÉTAPE 3
+STEP 3
 
-Se rendre dans "b2b_documents/config.lua"
-Configurer vos préférences et les points de distribution de l'objet.
-Enregistrer
-
-
-
-
+Go to "b2b_documents/config.lua"
+Configure it to your liking 
+Save
