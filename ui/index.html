@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html id="htmlRoot" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="hidden flex items-center justify-center h-screen bg-black/70">
+    <div id="notify" class="notification"></div>
+    <div class="relative w-[85vw] max-w-[1400px] h-[90vh] bg-white shadow-2xl flex flex-col animate-fadeIn rounded-2xl overflow-hidden">
+        
+        <div class="bg-gray-200 p-2 border-b border-gray-300 rounded-t-2xl"> 
+            <input type="text" id="docTitle" class="w-full bg-transparent text-xl font-bold px-4 py-1 outline-none text-gray-800" data-i18n-placeholder="ui_title_placeholder" placeholder="Titre du document...">
+        </div>
+        
+        <div id="toolbar" class="bg-gray-100"></div>
+        <div id="editor" class="flex-1 text-black overflow-y-auto p-10 shadow-inner"></div>
+        
+        <img src="img/logo.png" class="absolute bottom-1 right-9 w-32 opacity-75 pointer-events-none select-none z-10">
+    </div>
+
+    <div class="ml-6 flex flex-col gap-3">
+        <button id="saveBtn" onclick="triggerAction('save')" class="btn-action bg-green-600 flex items-center justify-center w-[50px] h-[50px] rounded-xl shadow-lg" data-i18n-title="ui_btn_save" title="Sauvegarder">
+            <i class="fas fa-save text-[20px] pointer-events-none"></i>
+        </button>
+
+        <button id="lockBtn" onclick="triggerAction('lock')" class="btn-action bg-red-600 flex items-center justify-center w-[50px] h-[50px] rounded-xl shadow-lg" data-i18n-title="ui_btn_lock" title="Verrouiller">
+            <i class="fas fa-lock text-[20px] pointer-events-none"></i>
+        </button> 
+
+        <button id="duplicateBtn" onclick="openModal('duplicateModal')" class="btn-action bg-yellow-500 flex items-center justify-center w-[50px] h-[50px] rounded-xl shadow-lg" data-i18n-title="ui_btn_duplicate" title="Dupliquer">
+            <i class="fas fa-copy text-[20px] pointer-events-none"></i>
+        </button>
+
+        <button onclick="closeUI()" class="btn-action bg-gray-800 flex items-center justify-center w-[50px] h-[50px] rounded-xl shadow-lg" data-i18n-title="ui_btn_close" title="Fermer">
+            <i class="fas fa-times text-[20px] pointer-events-none"></i>
+        </button>
+    </div>
+    
+    <div id="duplicateModal" class="hidden fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+        <div class="bg-gray-900 p-6 rounded-xl shadow-2xl w-[400px] border border-gray-700 animate-popIn">
+            <h2 class="text-white text-lg font-bold mb-2" data-i18n="ui_modal_dup_title">Dupliquer le document</h2>
+            <p class="text-gray-400 text-xs mb-4" data-i18n="ui_modal_dup_desc">Cela dupliquera votre document.</p>
+            <div class="flex justify-end gap-3">
+                <button onclick="document.getElementById('duplicateModal').classList.add('hidden')" class="px-4 py-2 text-gray-400 hover:text-white" data-i18n="ui_btn_cancel">Annuler</button>
+                <button onclick="triggerAction('duplicate')" class="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-400" data-i18n="ui_btn_copy">Copier</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
