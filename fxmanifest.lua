@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'alnd'
 description 'B2B ROLEPLAY DOCUMENTS'
-version '2.0.0'
+version '1.5.0'
 
 ui_page 'ui/index.html'
 
