@@ -51,3 +51,6 @@ STEP 4
 
 Open "b2b_documents/config.lua"
 Set your preferred locale (en or fr), configure your distribution points, then save.
+
+
+

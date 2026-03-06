@@ -1,14 +1,11 @@
 if Config.Locale ~= 'en' then return end
 
 Locale = {
-    -- Server messages
-    success          = "Success",
-    error            = "Error",
-    paper_taken      = "You took a blank sheet of paper.",
-    pockets_full     = "Your pockets are full.",
-    cooldown         = "Please wait before taking another sheet.",
-
-    -- UI labels
+    success              = "Success",
+    error                = "Error",
+    paper_taken          = "You took a blank sheet of paper.",
+    pockets_full         = "Your pockets are full.",
+    cooldown             = "Please wait before taking another sheet.",
     ui_title_placeholder = "Document title...",
     ui_btn_save          = "Save",
     ui_btn_lock          = "Lock",

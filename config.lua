@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Locale = "fr"               -- Locale: "fr" or "en"
+Config.Locale = "en"               -- Locale: "fr" or "en"
 Config.UseAnimation = false         -- Enable ped animation on document open
 Config.Framework = "auto"           -- auto, esx, qbox, or qbcore
 Config.PaperCooldown = 30           -- Cooldown in seconds between paper pickups at distribution points

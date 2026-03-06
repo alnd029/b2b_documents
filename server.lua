@@ -1,6 +1,6 @@
 local ox_inventory = exports.ox_inventory
 local ESX, QBCore, Qbox = nil, nil, nil
-local paperCooldowns = {}   -- Bug fix #6: track cooldown per player
+local paperCooldowns = {}
 
 CreateThread(function()
     if Config.Framework == "auto" then
@@ -22,7 +22,6 @@ CreateThread(function()
     end
 end)
 
--- Unified notification helper using T() locale keys
 local function notify(src, msg, nType)
     if Config.Framework == 'esx' and ESX then
         TriggerClientEvent('esx:showNotification', src, msg)
@@ -37,7 +36,6 @@ local function notify(src, msg, nType)
     end
 end
 
--- Clean up cooldown entry when player drops
 AddEventHandler('playerDropped', function()
     paperCooldowns[source] = nil
 end)
@@ -46,7 +44,6 @@ RegisterNetEvent('b2b_documents:server:requestPaper', function()
     local src = source
     local now = os.time()
 
-    -- Bug fix #6: cooldown check
     if paperCooldowns[src] and (now - paperCooldowns[src]) < Config.PaperCooldown then
         notify(src, T('cooldown'), 'error')
         return
@@ -76,7 +73,6 @@ lib.callback.register('b2b_documents:handleAction', function(source, data, slot)
         end
     end
 
-    -- Bug fix #7: verify item actually belongs to this player
     if not item then return false end
 
     local metadata = item.metadata or {}

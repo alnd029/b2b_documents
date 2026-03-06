@@ -39,23 +39,11 @@ quill.clipboard.addMatcher(Node.ELEMENT_NODE, (node, delta) => {
     return delta;
 });
 
-// Bug fix #4: functional notification system for the existing #notify div
-function showNotify(message, type = 'success') {
-    const notify = document.getElementById('notify');
-    notify.textContent = message;
-    notify.className = 'notification ' + type + ' show';
-    setTimeout(() => {
-        notify.classList.remove('show');
-    }, 3000);
-}
-
-// Bug fix #3: single unified message listener (removed dead duplicate that checked event.data.type)
 window.addEventListener('message', (event) => {
     if (event.data.action !== "open") return;
 
     document.body.classList.remove('hidden');
 
-    // Apply locale strings to all tagged elements
     const loc = event.data.locale || {};
     document.documentElement.lang = event.data.lang || 'fr';
 
@@ -72,7 +60,7 @@ window.addEventListener('message', (event) => {
         if (loc[key]) el.placeholder = loc[key];
     });
 
-    const title    = event.data.title  || "Untitled Document";
+    const title    = event.data.title   || "Untitled Document";
     const content  = event.data.content || "";
     const isLocked = (event.data.locked === true || event.data.locked === 1);
 
@@ -83,7 +71,6 @@ window.addEventListener('message', (event) => {
         quill.enable(false);
         document.getElementById('docTitle').disabled = true;
         document.querySelector('.ql-toolbar').style.display = 'none';
-
         document.querySelectorAll('.btn-action').forEach(b => {
             if (!b.innerHTML.includes('fa-times')) b.style.display = 'none';
         });
@@ -91,17 +78,14 @@ window.addEventListener('message', (event) => {
         quill.enable(true);
         document.getElementById('docTitle').disabled = false;
         document.querySelector('.ql-toolbar').style.display = 'block';
-
         document.querySelectorAll('.btn-action').forEach(b => b.style.display = 'flex');
     }
 });
 
-// Bug fix #1: closeUI defined only once (removed duplicate first definition)
 function closeUI() {
     document.body.classList.add('hidden');
     quill.setText('');
     quill.history.clear();
-
     fetch(`https://${GetParentResourceName()}/close`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -109,8 +93,6 @@ function closeUI() {
     });
 }
 
-// Bug fix #2: closeUI no longer called before fetch in 'duplicate'
-// closeUI is now only called after confirmed server success
 function triggerAction(actionType) {
     const contentHtml = quill.root.innerHTML;
     const docTitle    = document.getElementById('docTitle').value || "Untitled";
@@ -118,7 +100,6 @@ function triggerAction(actionType) {
     if (actionType === 'duplicate') {
         const modal = document.getElementById('duplicateModal');
         if (modal) modal.classList.add('hidden');
-        // Do NOT close UI here — wait for server confirmation below
     }
 
     fetch(`https://${GetParentResourceName()}/doAction`, {
@@ -132,9 +113,7 @@ function triggerAction(actionType) {
     })
     .then(resp => resp.json())
     .then(success => {
-        if (success) {
-            closeUI();
-        }
+        if (success) closeUI();
     });
 }
 
