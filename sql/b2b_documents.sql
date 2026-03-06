@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `b2b_documents` (
+    `id` VARCHAR(60) NOT NULL,
+    `content` LONGTEXT NOT NULL DEFAULT '',
+    `title` VARCHAR(255) NOT NULL DEFAULT 'Document',
+    `locked` TINYINT(1) NOT NULL DEFAULT 0,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
