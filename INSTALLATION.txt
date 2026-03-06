@@ -1,32 +1,37 @@
-Dependencies:
+DEPENDENCIES:
 
 - ox_lib
 - ox_inventory
 - ox_target
-- MySQL
-- esx, qbcore ou qbox.
+- oxmysql
+- esx, qbcore or qbox
 
 
-INSTALLATION: 
+INSTALLATION:
 ---------------------------------------------------------------------------------------------------------------------------------------------
 STEP 1
 
-Place the folder "b2b_documents" in your ressources folder.
-Ensure it in your server.cfg
+Import the file "b2b_documents.sql" into your database.
+You can do this via phpMyAdmin, HeidiSQL, or any MySQL client.
 --
 STEP 2
 
+Place the "b2b_documents" folder inside your resources folder.
+Add "ensure b2b_documents" to your server.cfg
+--
+STEP 3
+
 Go to "ox_inventory/data/items.lua"
-Go to the end of the file and add this: 
+Scroll to the end of the file and paste the following, respecting the existing syntax, then save:
 
     ['paper_blank'] = {
-        label = 'Blank Paper',
+        label = 'Blank Sheet',
         weight = 10,
         stack = false,
         close = true,
         client = {
-            image = 'nui://b2b_documents/web/images/paper.png', 
-            export = 'b2b_documents.usePaper' 
+            image = 'nui://b2b_documents/web/images/paper.png',
+            export = 'b2b_documents.usePaper'
         }
     },
 
@@ -36,14 +41,13 @@ Go to the end of the file and add this:
         stack = false,
         close = true,
         client = {
-            image = 'nui://b2b_documents/web/images/document.png', 
-            export = 'b2b_documents.usePaper' 
+            image = 'nui://b2b_documents/web/images/document.png',
+            export = 'b2b_documents.usePaper'
         }
     }
 
 --
-STEP 3
+STEP 4
 
-Go to "b2b_documents/config.lua"
-Configure it to your liking 
-Save
+Open "b2b_documents/config.lua"
+Set your preferred locale (en or fr), configure your distribution points, then save.
