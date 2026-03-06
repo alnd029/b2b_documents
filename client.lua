@@ -55,19 +55,24 @@ end)
 
 CreateThread(function()
     for i, v in pairs(Config.DistributionPoints) do
-        if v.usePed then
+        if v.usePed and v.pedModel ~= "" then
             local model = GetHashKey(v.pedModel)
             RequestModel(model)
-            while not HasModelLoaded(model) do Wait(1) end
+            local timeout = 0
+            while not HasModelLoaded(model) do
+                Wait(100)
+                timeout = timeout + 100
+                if timeout >= 5000 then break end
+            end
 
-            local ped = CreatePed(4, model, v.coords.x, v.coords.y, v.coords.z - 1.0, v.heading, false, true)
-
-            SetEntityInvincible(ped, true)
-            SetBlockingOfNonTemporaryEvents(ped, true)
-            FreezeEntityPosition(ped, true)
-            SetEntityCanBeDamaged(ped, false)
-
-            table.insert(spawnedPeds, ped)
+            if HasModelLoaded(model) then
+                local ped = CreatePed(4, model, v.coords.x, v.coords.y, v.coords.z - 1.0, v.heading, false, true)
+                SetEntityInvincible(ped, true)
+                SetBlockingOfNonTemporaryEvents(ped, true)
+                FreezeEntityPosition(ped, true)
+                SetEntityCanBeDamaged(ped, false)
+                table.insert(spawnedPeds, ped)
+            end
         end
 
         exports.ox_target:addSphereZone({
