@@ -2,42 +2,46 @@ local currentSlot = nil
 local spawnedPeds = {}
 
 function usePaper(data)
-    currentSlot = data.slot
-    local freshMetadata = lib.callback.await('b2b_documents:getFreshMetadata', 200, currentSlot)
-    local metadata = freshMetadata or data.metadata or {}
+    CreateThread(function()
+        Wait(150)
 
-    local docId = metadata.docId
-    if docId == "nil" then docId = nil end
+        currentSlot = data.slot
+        local freshMetadata = lib.callback.await('b2b_documents:getFreshMetadata', 200, currentSlot)
+        local metadata = freshMetadata or data.metadata or {}
 
-    if Config.UseAnimation then
-        TaskStartScenarioInPlace(cache.ped, "PROP_HUMAN_PARKING_METER", 0, true)
-    end
+        local docId = metadata.docId
+        if docId == "nil" then docId = nil end
 
-    local content = ""
-    if docId then
-        content = lib.callback.await('b2b_documents:getContent', 500, docId)
-    end
+        if Config.UseAnimation then
+            TaskStartScenarioInPlace(cache.ped, "PROP_HUMAN_PARKING_METER", 0, true)
+        end
 
-    SendNUIMessage({
-        action  = "open",
-        content = content,
-        title   = metadata.title or "Document",
-        locked  = metadata.locked or false,
-        lang    = Config.Locale,
-        locale  = {
-            ui_title_placeholder = T('ui_title_placeholder'),
-            ui_btn_save          = T('ui_btn_save'),
-            ui_btn_lock          = T('ui_btn_lock'),
-            ui_btn_duplicate     = T('ui_btn_duplicate'),
-            ui_btn_close         = T('ui_btn_close'),
-            ui_modal_dup_title   = T('ui_modal_dup_title'),
-            ui_modal_dup_desc    = T('ui_modal_dup_desc'),
-            ui_btn_cancel        = T('ui_btn_cancel'),
-            ui_btn_copy          = T('ui_btn_copy'),
-        }
-    })
+        local content = ""
+        if docId then
+            content = lib.callback.await('b2b_documents:getContent', 500, docId)
+        end
 
-    SetNuiFocus(true, true)
+        SendNUIMessage({
+            action  = "open",
+            content = content,
+            title   = metadata.title or "Document",
+            locked  = metadata.locked or false,
+            lang    = Config.Locale,
+            locale  = {
+                ui_title_placeholder = T('ui_title_placeholder'),
+                ui_btn_save          = T('ui_btn_save'),
+                ui_btn_lock          = T('ui_btn_lock'),
+                ui_btn_duplicate     = T('ui_btn_duplicate'),
+                ui_btn_close         = T('ui_btn_close'),
+                ui_modal_dup_title   = T('ui_modal_dup_title'),
+                ui_modal_dup_desc    = T('ui_modal_dup_desc'),
+                ui_btn_cancel        = T('ui_btn_cancel'),
+                ui_btn_copy          = T('ui_btn_copy'),
+            }
+        })
+
+        SetNuiFocus(true, true)
+    end)
 end
 exports('usePaper', usePaper)
 
